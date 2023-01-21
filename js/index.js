@@ -20,7 +20,7 @@ loadFiles(['shader/my_bubble_shader.vert', 'shader/my_bubble_shader.frag'], func
 
   let material = new THREE.ShaderMaterial({
       uniforms: {
-        directionalLightPos: { type: "v3", value: new THREE.Vector3(0.0, 0.0, 5.0) },
+        directionalLightPos: { type: "v3", value: new THREE.Vector3(0.0, 10.0, 5.0) },
         directionalLightColor: { type: "v3", value: new THREE.Vector3(1.0, 1.0, 1.0) },
         ambientLightColor: { type: "v3", value: new THREE.Vector3(0.25, 0.25, 0.25) },
         materialColor: { type: "v3", value: new THREE.Vector3(1.0, 1.0, 1.0) },
