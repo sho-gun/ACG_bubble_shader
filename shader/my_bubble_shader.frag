@@ -17,7 +17,7 @@ vec3 getInterferenceColor() {
   vec3 interferenceColor = directionalLightColor;
 
   float cos_theta = max( dot(normalize(directionalLightPos), mvNormal), dot(normalize(directionalLightPos), -mvNormal) );
-  float sin_phi_squared = 1.0 - pow( cos_theta, 2.0 );
+  float sin_phi_squared = ( 1.0 - pow( cos_theta, 2.0 ) ) / pow( refractiveIndex, 2.0 );
   float distanceDiff = ( 2.0 * surfaceThickness * sqrt(sin_phi_squared) ) / sqrt( 1.0 - sin_phi_squared );
 
   interferenceColor *= 0.5 * sqrt( 2.0 + 2.0 * cos( 2.0 * PI * distanceDiff / wavelengths ) );
