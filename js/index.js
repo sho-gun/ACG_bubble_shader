@@ -20,9 +20,9 @@ loadFiles(['shader/my_bubble_shader.vert', 'shader/my_bubble_shader.frag'], func
 
   let material = new THREE.ShaderMaterial({
       uniforms: {
-        directionalLightPos: { type: "v3", value: new THREE.Vector3(0.0, 10.0, 5.0) },
+        directionalLightPos: { type: "v3", value: new THREE.Vector3(0.0, 5.0, 5.0) },
         directionalLightColor: { type: "v3", value: new THREE.Vector3(1.0, 1.0, 1.0) },
-        ambientLightColor: { type: "v3", value: new THREE.Vector3(0.25, 0.25, 0.25) },
+        ambientLightColor: { type: "v3", value: new THREE.Vector3(0.1, 0.1, 0.1) },
         materialColor: { type: "v3", value: new THREE.Vector3(1.0, 1.0, 1.0) },
         backgroundColor: { type: "v3", value: new THREE.Vector3().fromArray(scene.background.toArray()) },
         surfaceThickness: { type: "f", value: 600.0 },
@@ -38,6 +38,8 @@ loadFiles(['shader/my_bubble_shader.vert', 'shader/my_bubble_shader.frag'], func
   function animate() {
     requestAnimationFrame( animate );
     renderer.render( scene, camera );
+
+    material.uniforms.backgroundColor.value.fromArray(scene.background.toArray());
   };
   animate();
 
@@ -56,6 +58,12 @@ loadFiles(['shader/my_bubble_shader.vert', 'shader/my_bubble_shader.frag'], func
   lightFolder.add( material.uniforms.directionalLightColor.value, "y", 0.0, 1.0, 0.01 ).name("G");
   lightFolder.add( material.uniforms.directionalLightColor.value, "z", 0.0, 1.0, 0.01 ).name("B");
   lightFolder.open();
+
+  const bgFolder = gui.addFolder('Background');
+  bgFolder.add( scene.background, "r", 0.0, 1.0, 0.01 ).name("R");
+  bgFolder.add( scene.background, "g", 0.0, 1.0, 0.01 ).name("G");
+  bgFolder.add( scene.background, "b", 0.0, 1.0, 0.01 ).name("B");
+  bgFolder.open();
 
 }, function (url) {
     alert('Failed to download "' + url + '"');
