@@ -20,7 +20,7 @@ vec3 getInterferenceColor() {
   float sin_phi_squared = 1.0 - pow( cos_theta, 2.0 );
   float distanceDiff = ( 2.0 * surfaceThickness * sqrt(sin_phi_squared) ) / sqrt( 1.0 - sin_phi_squared );
 
-  interferenceColor *= sqrt( 2.0 + 2.0 * cos( 2.0 * PI * distanceDiff / wavelengths ) );
+  interferenceColor *= 0.5 * sqrt( 2.0 + 2.0 * cos( 2.0 * PI * distanceDiff / wavelengths ) );
 
   return interferenceColor;
 }
